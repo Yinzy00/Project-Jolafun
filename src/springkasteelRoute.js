@@ -75,5 +75,5 @@ router.put('/:id', async (req, res) => {
     }
     console.log("PUT route  /springkasteel/:id called");
 });
-router.delete('/:id', async);
+// router.delete('/:id', async);
 module.exports = router;
