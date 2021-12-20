@@ -1,10 +1,18 @@
-const express = require('express')
-const app = express()
+const express = require('express'),
+    routes = require('./routes'),
+    mongoose = require('mongoose'),
+    app = express();
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+require('dotenv').config();
+
+app.use(express.json());
+app.use(routes);
+
+mongoose.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+    console.log("Connected to db!");
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is up and running on ${process.env.PORT}!`);
+    });
 })
-
-app.listen(3000, () => {
-    console.log("Server is up and running!");
-});
+.catch((e) => console.error(`Foutmelding: ${e}`));
