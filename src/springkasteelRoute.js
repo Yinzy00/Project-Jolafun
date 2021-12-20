@@ -75,5 +75,14 @@ router.put('/:id', async (req, res) => {
     }
     console.log("PUT route  /springkasteel/:id called");
 });
-// router.delete('/:id', async);
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        res.send(await Springkasteel.findByIdAndDelete(id));
+    } catch (error) {
+        console.log(`Foutmelding ${error}`);
+        res.sendStatus(500);
+    }
+    console.log("DELETE route  /springkasteel/:id called");
+});
 module.exports = router;
