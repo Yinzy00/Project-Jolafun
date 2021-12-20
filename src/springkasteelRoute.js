@@ -4,12 +4,12 @@ router = express.Router()
 ;
 
 router.get('/', async (req, res) => {
-    res.send('GET /springkasteel');
+    // res.send('GET /springkasteel');
     try {
         res.json(await Springkasteel.find());
     } catch (e) {
         console.log(`Foutmelding ${e}`);
-        // res.sendStatus(500);
+        res.sendStatus(500);
     }
     console.log("GET route /springkasteel called");
 });
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
         res.send(await Springkasteel.create(req.body));
     } catch (error) {
         console.log(error);
-        //res.sendStatus(500);
+        res.sendStatus(500);
     }
 })
 
